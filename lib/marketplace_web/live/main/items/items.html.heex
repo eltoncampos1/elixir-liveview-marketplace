@@ -1,0 +1,10 @@
+<div class="bg-white">
+  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="sr-only">Products</h2>
+    <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
+      <%= for product <- @products do %>
+        <.live_component module={Item} id={product.id} product={product} />
+        <% end %>
+    </div>
+  </div>
+</div>
