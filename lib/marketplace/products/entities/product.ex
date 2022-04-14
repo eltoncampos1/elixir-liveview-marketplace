@@ -19,7 +19,11 @@ defmodule Marketplace.Products.Entities.Product do
     timestamps()
   end
 
-  def changeset(struct \\ %__MODULE__{}, params) do
+  def changeset(attrs \\ %{}) do
+    changeset(%__MODULE__{}, attrs)
+  end
+
+  def changeset(struct, params) do
     struct
     |> cast(params, @required_params ++ @optional_params)
     |> validate_required(@required_params)

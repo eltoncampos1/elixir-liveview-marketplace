@@ -8,5 +8,7 @@ defmodule Marketplace.Products.Repositories.ProductRepository do
     |> Repo.insert()
   end
 
+  def change_product, do: Product.changeset()
+
   def list, do: Repo.all(Product)
 end

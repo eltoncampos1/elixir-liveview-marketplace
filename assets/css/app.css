@@ -44,6 +44,10 @@
   margin: -1rem 0 2rem;
 }
 
+#editor {
+  min-height: 200px;
+}
+
 /* LiveView specific classes for your customization */
 .phx-no-feedback.invalid-feedback,
 .phx-no-feedback .invalid-feedback {
