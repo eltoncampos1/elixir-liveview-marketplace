@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  marketplace:
+    image: postgres
+    container_name: marketplace
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=marketplace_dev
+    volumes:
+      - pg:/data/postgres
+
+volumes:
+  pg:
+    driver: local
