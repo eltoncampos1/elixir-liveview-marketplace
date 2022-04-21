@@ -60,14 +60,6 @@ defmodule Marketplace.Products.Repositories.ProductRepository do
     |> Repo.all()
   end
 
-  def list(title) do
-    title = "%" <> title <> "%"
-
-    Product
-    |> where([p], ilike(p.title, ^title))
-    |> Repo.all()
-  end
-
   def get_image(product) do
     url = ProductImage.url({product.product_url, product})
     [_, url] = String.split(url, "/priv/static")

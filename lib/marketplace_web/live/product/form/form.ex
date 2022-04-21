@@ -33,6 +33,11 @@ defmodule MarketplaceWeb.ProductLive.Form do
     save(socket, action, product_params)
   end
 
+  @impl true
+  def handle_event("cancel", %{"ref" => ref}, socket) do
+    {:noreply, cancel_upload(socket, :photo, ref)}
+  end
+
   def save(socket, :new, product_params) do
     product_params = build_photo_to_upload(socket, product_params)
 
@@ -49,10 +54,6 @@ defmodule MarketplaceWeb.ProductLive.Form do
   end
 
   def save(socket, :edit, product_params) do
-    # product_params = build_photo_to_upload(socket, product_params)
-
-    IO.inspect(product_params)
-
     case ProductRepository.update_product(socket.assigns.product, product_params) do
       {:ok, _product} ->
         {:noreply,
@@ -63,11 +64,6 @@ defmodule MarketplaceWeb.ProductLive.Form do
       {:error, changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
     end
-  end
-
-  @impl true
-  def handle_event("cancel", %{"ref" => ref}, socket) do
-    {:noreply, cancel_upload(socket, :photo, ref)}
   end
 
   defp build_photo_to_upload(socket, product_params) do
