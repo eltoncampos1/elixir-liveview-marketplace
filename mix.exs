@@ -50,7 +50,10 @@ defmodule Marketplace.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:money, "~> 1.9"}
+      {:money, "~> 1.9"},
+      {:text_delta, "~> 1.1.0"},
+      {:waffle, "~> 1.1.0"},
+      {:waffle_ecto, "~> 0.0.9"}
     ]
   end
 

@@ -1,5 +1,6 @@
-<form class="md:grid md:grid-cols-1 md:gap-6">
+<div class="md:grid md:grid-cols-1 md:gap-6">
   <div class="mt-5 md:mt-0 md:col-span-2">
-    <.live_component module={Form} id="form-component" />
+    <.live_component module={Form} id={@product.id || :new} action={@live_action} product={@product}
+      return_to={Routes.main_path(@socket, :index)} />
   </div>
-</form>
+</div>

@@ -18,7 +18,9 @@ defmodule MarketplaceWeb.Router do
     pipe_through :browser
 
     live "/", MainLive, :index
-    live "/product", ProductLive, :index
+    live "/product/new", ProductLive, :new
+    live "/product/:id/edit", ProductLive, :edit
+    live "/product/:id", ProductLive.Show, :show
   end
 
   # Other scopes may use custom stacks.

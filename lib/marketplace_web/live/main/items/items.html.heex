@@ -1,10 +1,39 @@
-<div class="bg-white">
-  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="sr-only">Products</h2>
-    <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-      <%= for product <- @products do %>
-        <.live_component module={Item} id={product.id} product={product} />
-        <% end %>
+<div class="px-4 sm:px-6 lg:px-8">
+  <.live_component module={FilterByName} id="filter-by-name" name={@name} />
+  <.live_component module={FilterByStatus} id="filter-by-status" is_selected={@is_selected} phx-click="filter_by_active"
+    filter_by="active" />
+
+
+  <div class=" mt-8 flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                  <input type="checkbox" class="mr-4">
+                  Produto
+                </th>
+
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Categoria</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+
+              <%= for product <- @products do %>
+                <.live_component module={Item} id={product.id} product={product} />
+                <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

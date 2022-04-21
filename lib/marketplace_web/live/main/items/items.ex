@@ -1,10 +1,14 @@
 defmodule MarketplaceWeb.Main.Items do
   use MarketplaceWeb, :live_component
-  alias MarketplaceWeb.Main.Item
+  alias MarketplaceWeb.Main.{FilterByName, FilterByStatus, Item}
   alias Marketplace.Products.Repositories.ProductRepository
 
-  def update(_assigns, socket) do
-    products = ProductRepository.list()
-    {:ok, assign(socket, products: products)}
+  @impl true
+  def update(assigns, socket) do
+    {:ok,
+     socket
+     |> assign(products: assigns.products)
+     |> assign(name: "")
+     |> assign(is_selected: false)}
   end
 end

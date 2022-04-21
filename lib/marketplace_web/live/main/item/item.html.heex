@@ -1,25 +1,40 @@
-<div class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden">
-  <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-    <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg"
-      alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-      class="w-full h-full object-center object-cover sm:w-full sm:h-full">
-  </div>
-  <div class="flex-1 p-4 space-y-2 flex flex-col">
-    <h3 class="text-sm font-medium text-gray-900">
-      <a href="#">
-        <span aria-hidden="true" class="absolute inset-0"></span>
-        <%= @product.title %>
-      </a>
-    </h3>
-    <p class="text-sm text-gray-500">
-      <%= @product.description %>
-    </p>
-    <div class="flex-1 flex flex-col justify-end">
-      <p class="text-sm italic text-gray-500">8 colors</p>
-      <p class="text-base font-medium text-gray-900">
+<tr>
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+    <div class="flex items-center">
+      <input type="checkbox" class="mr-4">
 
-        <%= @product.price %>
-      </p>
+      <div class="h-10 w-10 flex-shrink-0">
+        <img class="h-10 w-10 rounded-full" src={ProductRepository.get_image(@product)} alt={@product.title}
+          title={@product.title} />
+      </div>
+      <div class="ml-4">
+        <div class="font-medium text-gray-900">
+          <%= @product.title %>
+        </div>
+        <div class="text-gray-500">
+          de: <%= @product.price %>
+        </div>
+        <div class="text-gray-700">
+          por: <%= @product.promotional_price %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </td>
+
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+
+    <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+      <%= @product.status %>
+    </span>
+  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <%= @product.category %>
+  </td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+    <%= live_redirect "Editar" , to: Routes.product_path(@socket, :edit, @product) %> |
+      <%= link "Deletar" , to: "#" , phx_click: "delete" , phx_value_id: @product.id, data: [confirm: "tem certeza?" ]
+        %> |
+        <%= live_redirect "Ver" , to: Routes.product_show_path(@socket, :show, @product) %>
+
+  </td>
+</tr>

@@ -1,3 +1,9 @@
+<p>
+  <%= live_flash(@flash, :notice) %>
+</p>
+<p>
+  <%= live_flash(@flash, :error) %>
+</p>
 <main class="container mx-auto">
   <%= @inner_content %>
 </main>
